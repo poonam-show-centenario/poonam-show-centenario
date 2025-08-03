@@ -80,6 +80,9 @@
             border: 2px solid #ff0000;
             animation: fadeIn 0.4s ease-in;
         }
+        body.no-scroll {
+             overflow: hidden;
+        }
         .modal-content img {
             width: 100%;
             height: auto;
@@ -313,16 +316,30 @@
         // Modal Functions
         function openModal() {
             document.getElementById('rifasModal').style.display = 'flex';
+            document.body.classList.add('no-scroll');
         }
         function openDancasModal() {
             document.getElementById('dancasModal').style.display = 'flex';
+            document.body.classList.add('no-scroll');
         }
         function openFoodStallsModal() {
             document.getElementById('foodStallsModal').style.display = 'flex';
+            document.body.classList.add('no-scroll');
         }
         function openCorpoDiretivoModal() {
             document.getElementById('corpoDiretivoModal').style.display = 'flex';
+            document.body.classList.add('no-scroll');
         }
+
+        // Close modals when clicking outside the modal content
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                    document.body.classList.remove('no-scroll');
+                }
+            });
+        });
 
         // Close modals when clicking outside the modal content
         document.querySelectorAll('.modal').forEach(modal => {
