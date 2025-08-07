@@ -2,9 +2,11 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Poonam Show Centenário</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Bungee:wght@400&family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         body {
@@ -15,11 +17,14 @@
             position: relative;
             margin: 0;
         }
+        body.no-scroll {
+            overflow: hidden;
+        }
         .header-bg {
             background: #fce901;
             position: relative;
             padding: 1.5rem 0;
-            margin-bottom: 2.5rem; /* Added spacing below header */
+            margin-bottom: 2.5rem;
         }
         .glow {
             box-shadow: 0 0 10px #fce901;
@@ -71,6 +76,12 @@
             align-items: center;
             overflow-y: auto;
         }
+        #programaModal, #rifasModal, #foodStallsModal, #corpoDiretivoModal {
+            overflow: hidden; /* Disable scrolling for specified modals */
+        }
+        #dancasModal {
+            overflow: hidden; /* Keep no scrolling for dancasModal */
+        }
         .modal-content {
             max-width: 95vw;
             max-height: 85vh;
@@ -79,9 +90,14 @@
             padding: 8px;
             border: 2px solid #ff0000;
             animation: fadeIn 0.4s ease-in;
+            overflow-y: auto;
+            position: relative;
         }
-        body.no-scroll {
-             overflow: hidden;
+        #programaModal .modal-content, #rifasModal .modal-content, #foodStallsModal .modal-content, #corpoDiretivoModal .modal-content {
+            overflow: hidden; /* Disable scrolling for specified modal content */
+        }
+        #dancasModal .modal-content {
+            overflow: hidden; /* Keep no scrolling for dancasModal content */
         }
         .modal-content img {
             width: 100%;
@@ -95,7 +111,7 @@
             to { opacity: 1; transform: scale(1); }
         }
         main {
-            margin-bottom: 1.5rem; /* Added spacing below main */
+            margin-bottom: 1.5rem;
         }
         footer {
             background: #fce901;
@@ -103,7 +119,7 @@
             padding: 2rem 1rem;
             text-align: center;
             position: relative;
-            margin-top: 1.5rem; /* Added spacing above footer */
+            margin-top: 1.5rem;
         }
         footer p {
             font-size: 1rem;
@@ -215,15 +231,13 @@
             border-radius: 10px;
             border: 2px solid #ff0000;
             text-align: center;
-          
         }
-       
         h1 {
             font-family: 'Bungee', sans-serif;
             font-weight: 400;
-            color: #ff0000; 
-            -webkit-text-stroke: 1.0px #ffffff; 
-            text-stroke: 1px #ffffff; 
+            color: #ff0000;
+            -webkit-text-stroke: 1.0px #ffffff;
+            text-stroke: 1px #ffffff;
         }
         h2 {
             font-family: 'Bungee', sans-serif;
@@ -235,6 +249,120 @@
             color: #000;
             margin-top: 3.5rem;
             display: inline-block;
+        }
+        /* Slider Styles */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-height: 80vh;
+            overflow: hidden;
+            border-radius: 6px;
+            border: 2px solid #ff0000;
+            background: #fff;
+        }
+        .slider img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 6px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .slider img.active {
+            opacity: 1;
+            position: relative;
+        }
+        .slider-controls {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 30px; /* Increased gap for more separation */
+            z-index: 10;
+        }
+        .slider-btn {
+            background: #ff0000;
+            color: #fce901;
+            border: 2px solid #fce901;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 8px #fce901;
+        }
+        .slider-btn:hover {
+            background: #fce901;
+            color: #ff0000;
+            box-shadow: 0 0 12px #ff0000;
+            transform: scale(1.1);
+        }
+        .prev-btn {
+            margin-right: 10px; /* Move prev-btn slightly to the left */
+        }
+        .next-btn {
+            margin-left: 10px; /* Move next-btn slightly to the right */
+        }
+        .slider-indicators {
+            display: flex;
+            gap: 8px;
+        }
+        .indicator {
+            width: 12px;
+            height: 12px;
+            background: #ff0000;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border: 1px solid #fce901;
+        }
+        .indicator.active {
+            background: #fce901;
+            box-shadow: 0 0 8px #ff0000;
+        }
+        @media (max-width: 640px) {
+            .slider-btn {
+                padding: 8px;
+                font-size: 1.2rem;
+            }
+            .indicator {
+                width: 10px;
+                height: 10px;
+            }
+            .slider-controls {
+                gap: 20px; /* Adjusted gap for smaller screens */
+            }
+            .prev-btn {
+                margin-right: 8px;
+            }
+            .next-btn {
+                margin-left: 8px;
+            }
+        }
+        @media (max-width: 400px) {
+            .slider-btn {
+                padding: 6px;
+                font-size: 1rem;
+            }
+            .indicator {
+                width: 8px;
+                height: 8px;
+            }
+            .slider-controls {
+                gap: 15px; /* Further reduced gap for very small screens */
+            }
+            .prev-btn {
+                margin-right: 6px;
+            }
+            .next-btn {
+                margin-left: 6px;
+            }
         }
     </style>
 </head>
@@ -255,6 +383,7 @@
         <section class="mb-6 text-center">
             <h2 class="text-xl font-bold text-[#f8f14a] mb-3 animate-slide-in">Explore o Centenário</h2>
             <div class="flex flex-col justify-center gap-2">
+                <button onclick="openPrograma()" class="bg-[#f8f14a] text-[#ff0000] font-bold px-6 py-2.5 rounded-lg glow hover-scale hover:bg-[#ff0000] hover:text-[#f8f14a]">Programa do Evento</button>
                 <button onclick="openModal()" class="bg-[#f8f14a] text-[#ff0000] font-bold px-6 py-2.5 rounded-lg glow hover-scale hover:bg-[#ff0000] hover:text-[#f8f14a]">Prêmios</button>
                 <button onclick="openDancasModal()" class="bg-[#f8f14a] text-[#ff0000] font-bold px-6 py-2.5 rounded-lg glow hover-scale hover:bg-[#ff0000] hover:text-[#f8f14a]">Danças</button>
                 <button onclick="openFoodStallsModal()" class="bg-[#f8f14a] text-[#ff0000] font-bold px-6 py-2.5 rounded-lg glow hover-scale hover:bg-[#ff0000] hover:text-[#f8f14a]">Food Stalls</button>
@@ -263,15 +392,32 @@
         </section>
     </main>
 
+    <div id="programaModal" class="modal">
+        <div class="modal-content glow">
+            <img src="programa.png" alt="Imagem do Programa">
+        </div>
+    </div>
+
     <div id="rifasModal" class="modal">
         <div class="modal-content glow">
-            <img src="premios.jpg" alt="Imagem de Rifas">
+            <img src="premios.png" alt="Imagem de Rifas">
         </div>
     </div>
 
     <div id="dancasModal" class="modal">
         <div class="modal-content glow">
-            <img src="dancas.jpg" alt="Imagem de Danças">
+            <div class="slider">
+                <img src="programadancas.png" alt="Imagem de Danças 1" class="active">
+                <img src="nomes.png" alt="Imagem de Danças 2">
+                <div class="slider-controls">
+                    <button class="slider-btn prev-btn" onclick="changeSlide(-1, 'dancasModal')">&#10094;</button>
+                    <div class="slider-indicators">
+                        <span class="indicator active" onclick="goToSlide(0, 'dancasModal')"></span>
+                        <span class="indicator" onclick="goToSlide(1, 'dancasModal')"></span>
+                    </div>
+                    <button class="slider-btn next-btn" onclick="changeSlide(1, 'dancasModal')">&#10095;</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -288,16 +434,16 @@
     </div>
 
     <section class="history-section glow">
-            <h1 class="text-4xl font-bold mb-3  text-[#ff0000] animate-slide-in">Nossa História</h1>
-            <p style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: large; font-weight: bold;">Há 100 anos, a Comunidade Hindú de Inhambane foi fundada com a missão de preservar e celebrar nossa cultura vibrante. Desde então, temos unido gerações através de tradições, danças, gastronomia e valores compartilhados. Este centenário é uma homenagem à nossa jornada e ao futuro que continuaremos a construir juntos.</p>
+        <h1 class="text-4xl font-bold mb-3 text-[#ff0000] animate-slide-in">Nossa História</h1>
+        <p style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: large; font-weight: bold;">Há 100 anos, a Comunidade Hindú de Inhambane foi fundada com a missão de preservar e celebrar nossa cultura vibrante. Desde então, temos unido gerações através de tradições, danças, gastronomia e valores compartilhados. Este centenário é uma homenagem à nossa jornada e ao futuro que continuaremos a construir juntos.</p>
     </section>
 
     <footer>
-        <h1 class="text-2xl font-bold mb-3  text-[#ff0000] animate-slide-in">Raízes Fortes, Futuro Brilhante</h1>
+        <h1 class="text-2xl font-bold mb-3 text-[#ff0000] animate-slide-in">Raízes Fortes, Futuro Brilhante</h1>
         <p style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: medium; font-weight: bold text-black;">Ao celebrarmos um século de existência, honramos não apenas a nossa história, mas os valores que moldaram gerações e continuam a inspirar o futuro desta comunidade.</p>
-        <a href="https://www.facebook.com/comunidadehinduibane" class="facebook-button" target="_blank">Facebook</a> 
+        <a href="https://www.facebook.com/comunidadehinduibane" class="facebook-button" target="_blank">Facebook</a>
         <p class="signature">Pratham Shekar & Milan Virendra</p>
-        <p style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: small; font-weight: bold text-black;">&copy; 2025 Todos os direitos reservados.</p>   
+        <p style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: small; font-weight: bold text-black;">&copy; 2025 Todos os direitos reservados.</p>
     </footer>
 
     <script>
@@ -314,6 +460,10 @@
         }
 
         // Modal Functions
+        function openPrograma() {
+            document.getElementById('programaModal').style.display = 'flex';
+            document.body.classList.add('no-scroll');
+        }
         function openModal() {
             document.getElementById('rifasModal').style.display = 'flex';
             document.body.classList.add('no-scroll');
@@ -341,14 +491,28 @@
             });
         });
 
-        // Close modals when clicking outside the modal content
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.style.display = 'none';
-                }
-            });
-        });
+        // Slider Functionality
+        function changeSlide(direction, modalId) {
+            const modal = document.getElementById(modalId);
+            const images = modal.querySelectorAll('.slider img');
+            const indicators = modal.querySelectorAll('.slider-indicators .indicator');
+            let currentIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
+            images[currentIndex].classList.remove('active');
+            indicators[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + direction + images.length) % images.length;
+            images[currentIndex].classList.add('active');
+            indicators[currentIndex].classList.add('active');
+        }
+
+        function goToSlide(index, modalId) {
+            const modal = document.getElementById(modalId);
+            const images = modal.querySelectorAll('.slider img');
+            const indicators = modal.querySelectorAll('.slider-indicators .indicator');
+            images.forEach(img => img.classList.remove('active'));
+            indicators.forEach(ind => ind.classList.remove('active'));
+            images[index].classList.add('active');
+            indicators[index].classList.add('active');
+        }
     </script>
 </body>
 </html>
