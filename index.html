@@ -74,11 +74,8 @@
             align-items: center;
             overflow-y: auto;
         }
-        #programaModal, #rifasModal, #foodStallsModal, #corpoDiretivoModal {
-            overflow: hidden; /* Disable scrolling for specified modals */
-        }
-        #dancasModal {
-            overflow: hidden; /* Keep no scrolling for dancasModal */
+        #programaModal, #rifasModal, #foodStallsModal, #corpoDiretivoModal, #dancasModal {
+            overflow: hidden;
         }
         .modal-content {
             max-width: 95vw;
@@ -91,11 +88,8 @@
             overflow-y: auto;
             position: relative;
         }
-        #programaModal .modal-content, #rifasModal .modal-content, #foodStallsModal .modal-content, #corpoDiretivoModal .modal-content {
-            overflow: hidden; /* Disable scrolling for specified modal content */
-        }
-        #dancasModal .modal-content {
-            overflow: hidden; /* Keep no scrolling for dancasModal content */
+        #programaModal .modal-content, #rifasModal .modal-content, #foodStallsModal .modal-content, #corpoDiretivoModal .modal-content, #dancasModal .modal-content {
+            overflow: hidden;
         }
         .modal-content img {
             width: 100%;
@@ -281,7 +275,7 @@
             transform: translateX(-50%);
             display: flex;
             align-items: center;
-            gap: 30px; /* Increased gap for more separation */
+            gap: 30px;
             z-index: 10;
         }
         .slider-btn {
@@ -302,10 +296,10 @@
             transform: scale(1.1);
         }
         .prev-btn {
-            margin-right: 10px; /* Move prev-btn slightly to the left */
+            margin-right: 10px;
         }
         .next-btn {
-            margin-left: 10px; /* Move next-btn slightly to the right */
+            margin-left: 10px;
         }
         .slider-indicators {
             display: flex;
@@ -334,7 +328,7 @@
                 height: 10px;
             }
             .slider-controls {
-                gap: 20px; /* Adjusted gap for smaller screens */
+                gap: 20px;
             }
             .prev-btn {
                 margin-right: 8px;
@@ -353,7 +347,7 @@
                 height: 8px;
             }
             .slider-controls {
-                gap: 15px; /* Further reduced gap for very small screens */
+                gap: 15px;
             }
             .prev-btn {
                 margin-right: 6px;
@@ -369,8 +363,8 @@
     <header class="header-bg text-center relative">
         <div class="container mx-auto px-4 relative z-10">
             <div class="flex justify-center gap-2 mb-3">
-                <img src="chi.webp" alt="Logotipo da Comunidade Hindú" class="logo-img h-24 w-24 rounded-full glow border-2 border-[#e70a2c]">
-                <img src="cem.webp" alt="Segundo Logotipo" class="logo-img h-24 w-24 rounded-full glow border-2 border-[#e70a2c]">
+                <img src="chi.webp" alt="Logotipo da Comunidade Hindú" class="logo-img h-24 w-24 rounded-full glow border-2 border-[#e70a2c]" loading="lazy">
+                <img src="cem.webp" alt="Segundo Logotipo" class="logo-img h-24 w-24 rounded-full glow border-2 border-[#e70a2c]" loading="lazy">
             </div>
             <h1 class="text-5xl font-bold text-[#ff0000] animate-slide-in">Poonam Show Centenário</h1>
             <h2 class="text-1xl font-bold text-[#ff0000] mt-2 animate-slide-in" style="animation-delay: 0.2s;">Celebrando 100 anos de cultura e união!</h2>
@@ -392,21 +386,21 @@
 
     <div id="programaModal" class="modal">
         <div class="modal-content glow">
-            <img src="programa.webp" alt="Imagem do Programa">
+            <img src="programa.webp" alt="Imagem do Programa" loading="lazy">
         </div>
     </div>
 
     <div id="rifasModal" class="modal">
         <div class="modal-content glow">
-            <img src="premios.webp" alt="Imagem de Rifas">
+            <img src="premios.webp" alt="Imagem de Rifas" loading="lazy">
         </div>
     </div>
 
     <div id="dancasModal" class="modal">
         <div class="modal-content glow">
             <div class="slider">
-                <img src="programadancas.webp" alt="Imagem de Danças 1" class="active">
-                <img src="nomes.webp" alt="Imagem de Danças 2">
+                <img src="programadancas.webp" alt="Imagem de Danças 1" class="active" loading="lazy">
+                <img src="nomes.webp" alt="Imagem de Danças 2" loading="lazy">
                 <div class="slider-controls">
                     <button class="slider-btn prev-btn" onclick="changeSlide(-1, 'dancasModal')">&#10094;</button>
                     <div class="slider-indicators">
@@ -422,9 +416,9 @@
     <div id="foodStallsModal" class="modal">
         <div class="modal-content glow">
             <div class="slider">
-                <img src="food1.webp" alt="Imagem de Food Stalls 1" class="active">
-                <img src="food2.webp" alt="Imagem de Food Stalls 2">
-                <img src="food3.webp" alt="Imagem de Food Stalls 3">
+                <img src="food1.webp" alt="Imagem de Food Stalls 1" class="active" loading="lazy">
+                <img src="food2.webp" alt="Imagem de Food Stalls 2" loading="lazy">
+                <img src="food3.webp" alt="Imagem de Food Stalls 3" loading="lazy">
                 <div class="slider-controls">
                     <button class="slider-btn prev-btn" onclick="changeSlide(-1, 'foodStallsModal')">&#10094;</button>
                     <div class="slider-indicators">
@@ -440,7 +434,20 @@
 
     <div id="corpoDiretivoModal" class="modal">
         <div class="modal-content glow">
-            <img src="corpo_diretivo.jpg" alt="Imagem do Corpo Diretivo">
+            <div class="slider">
+                <img src="directivo.webp" alt="Imagem de Corpo Diretivo 1" class="active" loading="lazy">
+                <img src="direcao.webp" alt="Imagem de Corpo Diretivo 2" loading="lazy">
+                <img src="mahila.webp" alt="Imagem de Corpo Diretivo 3" loading="lazy">
+                <div class="slider-controls">
+                    <button class="slider-btn prev-btn" onclick="changeSlide(-1, 'corpoDiretivoModal')">&#10094;</button>
+                    <div class="slider-indicators">
+                        <span class="indicator active" onclick="goToSlide(0, 'corpoDiretivoModal')"></span>
+                        <span class="indicator" onclick="goToSlide(1, 'corpoDiretivoModal')"></span>
+                        <span class="indicator" onclick="goToSlide(2, 'corpoDiretivoModal')"></span>
+                    </div>
+                    <button class="slider-btn next-btn" onclick="changeSlide(1, 'corpoDiretivoModal')">&#10095;</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -451,10 +458,10 @@
 
     <footer>
         <h1 class="text-2xl font-bold mb-3 text-[#ff0000] animate-slide-in">Raízes Fortes, Futuro Brilhante</h1>
-        <p style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: medium; font-weight: bold text-black;">Ao celebrarmos um século de existência, honramos não apenas a nossa história, mas os valores que moldaram gerações e continuam a inspirar o futuro desta comunidade.</p>
+        <p style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: medium; font-weight: bold; color: #000;">Ao celebrarmos um século de existência, honramos não apenas a nossa história, mas os valores que moldaram gerações e continuam a inspirar o futuro desta comunidade.</p>
         <a href="https://www.facebook.com/comunidadehinduibane" class="facebook-button" target="_blank">Facebook</a>
         <p class="signature">Pratham Shekar & Milan Virendra</p>
-        <p style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: small; font-weight: bold text-black;">&copy; 2025 Todos os direitos reservados.</p>
+        <p style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: small; font-weight: bold; color: #000;">&copy; 2025 Todos os direitos reservados.</p>
     </footer>
 
     <script>
@@ -493,6 +500,14 @@
         }
 
         // Close modals when clicking outside the modal content
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                    document.body.classList.remove('no-scroll');
+                }
+            });
+        });
         document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', function(e) {
                 if (e.target === this) {
